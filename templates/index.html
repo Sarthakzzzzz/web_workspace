@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Python Web IDE</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <div id="editor-container">
+      <textarea id="html-editor" placeholder="HTML"></textarea>
+      <textarea id="css-editor" placeholder="CSS"></textarea>
+      <textarea id="js-editor" placeholder="JS"></textarea>
+    </div>
+    <div id="preview-container">
+      <iframe id="live-preview"></iframe>
+    </div>
+    <div id="buttons">
+      <button id="save-btn">Save Project</button>
+      <button id="export-btn">Export as ZIP</button>
+    </div>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
