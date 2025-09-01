@@ -1,26 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Python Web IDE</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='styles.css') }}"
-    />
-  </head>
-  <body>
-    <div id="editor-container">
-      <textarea id="html-editor" placeholder="HTML"></textarea>
-      <textarea id="css-editor" placeholder="CSS"></textarea>
-      <textarea id="js-editor" placeholder="JS"></textarea>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web_Workspace - Full-Stack IDE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>🚀 Web_Workspace</h1>
+            <div class="header-controls">
+                <button id="theme-toggle">🌙</button>
+                <button id="new-project-btn">+ New Project</button>
+            </div>
+        </header>
+
+        <!-- Initializer Panel -->
+        <div id="initializer-panel" class="panel">
+            <h2>Create New Project</h2>
+            <form id="init-form">
+                <input type="text" id="project-name" placeholder="Project Name" required>
+                
+                <label>Frontend Framework:</label>
+                <select id="frontend-select">
+                    <option value="html">HTML/CSS/JS</option>
+                    <option value="react">React</option>
+                    <option value="vue">Vue.js</option>
+                    <option value="angular">Angular</option>
+                </select>
+                
+                <label>Backend Framework:</label>
+                <select id="backend-select">
+                    <option value="">None</option>
+                    <option value="flask">Flask</option>
+                    <option value="django">Django</option>
+                    <option value="express">Express.js</option>
+                    <option value="fastapi">FastAPI</option>
+                </select>
+                
+                <label>Utilities:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" value="tailwind"> TailwindCSS</label>
+                    <label><input type="checkbox" value="bootstrap"> Bootstrap</label>
+                    <label><input type="checkbox" value="axios"> Axios</label>
+                    <label><input type="checkbox" value="jquery"> jQuery</label>
+                </div>
+                
+                <button type="submit">Initialize Project</button>
+            </form>
+        </div>
+
+        <!-- Project Selector -->
+        <div id="project-selector" class="panel" style="display:none;">
+            <h3>Select Project:</h3>
+            <select id="project-list"></select>
+            <button id="load-project-btn">Load Project</button>
+        </div>
+
+        <!-- Main IDE Interface -->
+        <div id="ide-container" style="display:none;">
+            <div class="ide-layout">
+                <!-- File Explorer -->
+                <div id="file-explorer" class="panel">
+                    <h3>Files</h3>
+                    <div id="file-tree"></div>
+                </div>
+
+                <!-- Code Editor -->
+                <div id="editor-panel" class="panel">
+                    <div class="editor-tabs">
+                        <div class="tab active" data-file="index.html">index.html</div>
+                    </div>
+                    <div id="code-editor"></div>
+                    <div class="editor-controls">
+                        <button id="save-file-btn">💾 Save</button>
+                        <button id="run-btn">▶️ Run</button>
+                    </div>
+                </div>
+
+                <!-- Preview Panel -->
+                <div id="preview-panel" class="panel">
+                    <div class="preview-header">
+                        <h3>Live Preview</h3>
+                        <button id="refresh-preview">🔄</button>
+                    </div>
+                    <iframe id="preview-frame"></iframe>
+                    <div id="console-output"></div>
+                </div>
+            </div>
+
+            <!-- Bottom Controls -->
+            <div class="bottom-controls">
+                <button id="export-project-btn">📦 Export ZIP</button>
+                <button id="back-to-init">← Back to Projects</button>
+            </div>
+        </div>
     </div>
-    <div id="preview-container">
-      <iframe id="live-preview"></iframe>
-    </div>
-    <div id="buttons">
-      <button id="save-btn">Save Project</button>
-      <button id="export-btn">Export as ZIP</button>
-    </div>
+
     <script src="{{ url_for('static', filename='app.js') }}"></script>
-  </body>
+</body>
 </html>

@@ -1,0 +1,9 @@
+{
+    "name": "demo-react",
+    "frontend": "react",
+    "backend": "",
+    "utilities": ["tailwind"],
+    "description": "Demo React application showcasing Web_Workspace features",
+    "created": "2024-01-01",
+    "version": "1.0.0"
+}
