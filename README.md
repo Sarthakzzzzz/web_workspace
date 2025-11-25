@@ -53,3 +53,9 @@ _[To be decided based on testing]_
 
 **Current Phase:** Prototyping and Logic Design.
 _Currently working on the logic for the Dependency Resolution System to ensure smooth cross-platform installations._
+
+---
+
+## License
+
+This project is licensed under the MIT License — see the `LICENSE` file for details.
